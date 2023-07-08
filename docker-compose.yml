@@ -1,0 +1,33 @@
+version: '3.8'
+
+
+volumes:
+  data:
+services:
+  db-organus:
+    image: postgres:15.3
+    ports:
+      - '5440:5432'
+    container_name: "db-organus"
+    restart: always
+    volumes:
+      
+      - data:/var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/shm
+    environment:
+      TZ: America/Bahia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: organus
+  api:
+    build: .
+    command: npm run dev
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/usr/app
+    depends_on:
+      - db-organus
+

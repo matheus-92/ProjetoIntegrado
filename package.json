@@ -1,0 +1,56 @@
+{
+    "name": "organus",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npx tsc",
+        "dev": "npx nodemon",
+        "prod": "ts-node ./src/index.ts",
+        "lint": "eslint . --ext .ts",
+        "lint-and-fix": "eslint . --ext .ts --fix",
+        "prepare": "husky install",
+        "pre-commit": "lint-staged",
+        "prisma-dev": "npx prisma migrate dev",
+        "prisma-deploy": "npx prisma migrate deploy"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint-and-fix",
+            "pre-push": "npm run lint-and-fix"
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.17",
+        "@types/node": "^20.3.1",
+        "@typescript-eslint/eslint-plugin": "^5.59.9",
+        "@typescript-eslint/parser": "^5.59.9",
+        "eslint": "^8.42.0",
+        "git-commit-msg-linter": "^5.0.4",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.2.2",
+        "nodemon": "^2.0.22",
+        "prettier": "npm:@btmills/prettier@^2.8.8",
+        "prettier-plugin-prisma": "^4.13.0",
+        "prisma": "^4.16.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.1.3"
+    },
+    "dependencies": {
+        "@commitlint/cli": "^17.6.5",
+        "@commitlint/config-conventional": "^17.6.5",
+        "@prisma/client": "^4.16.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.1.4",
+        "express": "^4.18.2",
+        "jwt-simple": "^0.5.6"
+    }
+}
